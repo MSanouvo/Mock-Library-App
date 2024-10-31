@@ -1,0 +1,16 @@
+body{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+.container{
+    border: 1px solid black;
+    height: 99%;
+}
+
+.bookshelf{
+    display: grid;
+    height: 50%;
+    width: 90%;
+    border: 1px solid brown;
+}
