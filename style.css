@@ -3,14 +3,48 @@ body{
     margin: 0;
     padding: 0;
 }
+
+.header{
+    text-align: center;
+}
 .container{
-    border: 1px solid black;
     height: 99%;
 }
 
 .bookshelf{
     display: grid;
     height: 50%;
-    width: 90%;
     border: 1px solid brown;
+    padding: 20px;
+    grid-template-rows: 50px;
+}
+
+.bookshelf > span, div{
+    justify-self: center;
+}
+
+.subheader{
+    font-size: 2rem;
+}
+
+.shelfspace{
+    display: grid;
+    border: 1px solid red;
+    max-width: 80%;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.shelfspace > span, div{
+    justify-self: center;
+}
+
+.book{
+    display: grid;
+    border: 1px solid blue;
+    height: 200px;
+    box-shadow: 2px 2px 2px 2px gray;
+    padding: 20px;
+    width: auto;
 }
