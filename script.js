@@ -34,8 +34,9 @@ function displayLibrary(){
         bookAuthor.textContent = currentBook.author
         const bookPageCount = document.createElement('span')
         bookPageCount.textContent = currentBook.page_count
-
+        
         appendChildern(book, bookName, bookAuthor, bookPageCount)
+        appendIsReadButton(book)
         book.setAttribute("class", "book")
         bookShelf.appendChild(book)
         //Works but vulnerable to HTML injection
@@ -50,6 +51,23 @@ function appendChildern(parent, child1, child2, child3){
     parent.appendChild(child1)
     parent.appendChild(child2)
     parent.appendChild(child3)
+}
+
+function appendIsReadButton(parent){
+    const isReadForm = document.createElement('form')
+    
+    const isReadButton = document.createElement('input')
+    isReadButton.setAttribute("type", "checkbox")
+    isReadButton.setAttribute("id", "isRead")
+    
+    const buttonLabel = document.createElement('label')
+    buttonLabel.setAttribute("for", "isRead")
+    buttonLabel.textContent = "Read: "
+
+    isReadForm.appendChild(buttonLabel)
+    isReadForm.appendChild(isReadButton)
+    
+    parent.appendChild(isReadForm)
 }
 
 
