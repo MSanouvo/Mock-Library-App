@@ -50,6 +50,12 @@ body{
 }
 
 dialog{
+    border: none;
+    background: none;
+}
+
+.modal{
+    background: white;
     height: 300px;
     width: 350px;
     display: grid;
@@ -58,6 +64,7 @@ dialog{
     box-shadow: 3px 3px 3px 3px black;
     border: none;
     border-radius: 20px;
+}
 
 .book-form{
     width: 200px;
@@ -65,10 +72,10 @@ dialog{
     padding: 0px 20px 20px;
     grid-row: 1;
     gap: 10px;
-    
+    grid-column: 1;
 }
 
-.close{
+#close{
     grid-column: 2;
     height: 20px;
     width: 80px;
@@ -76,7 +83,6 @@ dialog{
     display: flex;
     justify-content: center;
     align-items: center;
-    justify-self: end;
 }
 
 .input{
