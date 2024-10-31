@@ -58,9 +58,6 @@ dialog{
     box-shadow: 3px 3px 3px 3px black;
     border: none;
     border-radius: 20px;
-    position: absolute;
-    top: 300px;
-}
 
 .book-form{
     width: 200px;

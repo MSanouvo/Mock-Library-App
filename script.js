@@ -89,7 +89,17 @@ Book.prototype.isRead = function(){
 
 displayLibrary()
 //removeBook(dune)
+//Event Listeners
+const dialog = document.querySelector('dialog')
+const showDialog = document.querySelector('#open')
+const closeDialog = document.querySelector('.close')
 
+showDialog.addEventListener("click", () => {
+    dialog.showModal()
+})
 
+closeDialog.addEventListener("click", () =>{
+    dialog.close()
+})
 
 
