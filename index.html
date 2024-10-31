@@ -19,6 +19,27 @@
                 </div>
             </div>
         </div>
+        <dialog class="modal">
+            <button class="close" autofocus>cancel</button>
+            <form class="book-form" action="script.js" method="dialog">
+                <span><h2>Enter Book</h2></span>
+                <div class="input name">
+                    <label for="name">Input Name: </label>
+                    <input type="text" name="Book Name" id="name">
+                </div>
+                <div class="input author">
+                    <label for="author">Input Author:</label>
+                    <input type="text" name="Book Author" id="author">
+                </div>
+                <div class="input page">
+                    <label for="page_count">Input Page Count:</label>
+                    <input type="number" name="Page Count" id="page_count">
+                </div>
+                <div class="input submit">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </dialog>
     </div>
 </body>
 <script src="script.js"></script>

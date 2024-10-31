@@ -1,8 +1,4 @@
-//DOMS
 const bookShelf = document.querySelector('.shelfspace')
-
-
-//Functions/Functionality
 let myLibrary = [];
 
 function Book(name, author, page_count) {
@@ -12,12 +8,17 @@ function Book(name, author, page_count) {
     this.read = false
 }
 
-const harryP = new Book('Harry Potter', "J.k Rowling", 600)
-const dune = new Book('Dune', 'Dune Author')
-
 function addBookToLibrary(book){
     myLibrary.push(book)
 }
+
+//example objects
+const harryP = new Book('Harry Potter', "J.k Rowling", 600)
+const dune = new Book('Dune', 'Dune Author')
+
+addBookToLibrary(harryP)
+addBookToLibrary(dune)
+
 
 
 function displayLibrary(){
@@ -84,13 +85,11 @@ Book.prototype.isRead = function(){
     this.read = true
 }
 
-addBookToLibrary(harryP)
-addBookToLibrary(dune)
+
 
 displayLibrary()
 //removeBook(dune)
 
-harryP.isRead()
 
 
 

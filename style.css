@@ -48,3 +48,41 @@ body{
     padding: 20px;
     width: 250px;
 }
+
+dialog{
+    height: 300px;
+    width: 350px;
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    padding: 30px;
+    box-shadow: 3px 3px 3px 3px black;
+    border: none;
+    border-radius: 20px;
+    position: absolute;
+    top: 300px;
+}
+
+.book-form{
+    width: 200px;
+    display: grid;
+    padding: 0px 20px 20px;
+    grid-row: 1;
+    gap: 10px;
+    
+}
+
+.close{
+    grid-column: 2;
+    height: 20px;
+    width: 80px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: end;
+}
+
+.input{
+    align-self: center;
+    justify-self: start;
+}
