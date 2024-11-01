@@ -31,58 +31,88 @@ function displayLibrary(){
         bookAuthor.textContent = currentBook.author
         const bookPageCount = document.createElement('span')
         bookPageCount.textContent = currentBook.page_count
-        //create and append book
-        appendChildern(book, bookName, bookAuthor, bookPageCount)
-        appendIsReadButton(book)
-        bookShelf.appendChild(book)
+        
         //remove button
         const remove = document.createElement('button')
         remove.textContent = 'Remove Book'
         remove.setAttribute("type", "button")
         remove.setAttribute("id", "remove")
+        
+        //isread
+        const isReadForm = document.createElement('form')
+        isReadForm.classList.add('isRead')
+        const isReadButton = document.createElement('input')
+        isReadButton.setAttribute("type", "checkbox")
+        isReadButton.setAttribute("id", "isRead")
+        if(currentBook.read === true){
+            isReadButton.checked = true
+        }else{
+            isReadButton.checked = false
+        }
+
+        const buttonLabel = document.createElement('label')
+        buttonLabel.setAttribute("for", "isRead")
+        buttonLabel.textContent = "Read: "
+        isReadForm.appendChild(buttonLabel)
+        isReadForm.appendChild(isReadButton)
+        
+        
+        //create and append book
+        appendChildern(book, bookName, bookAuthor, bookPageCount)
+        book.appendChild(isReadForm)
+        bookShelf.appendChild(book)
         book.appendChild(remove)
 
+        
         remove.addEventListener('click', () =>{
             currentIndex = book.dataset.indexNumber
             myLibrary.splice(currentIndex, 1)
             displayLibrary()
         })
+
+        isReadForm.addEventListener('click', () => {
+            currentIndex = book.dataset.indexNumber
+            let checkbox = isReadButton.checked
+            //logic looks backwards cause default state is unchecked
+            if(checkbox === true){
+                checkbox = false
+                myLibrary[currentIndex].isRead()
+            } else{
+                checkbox = true
+                myLibrary[currentIndex].notRead()
+            } 
+        })
+
+        }
     }
-}
-function appendChildern(parent, child1, child2, child3){
-    parent.appendChild(child1)
-    parent.appendChild(child2)
-    parent.appendChild(child3)
+    function appendChildern(parent, child1, child2, child3){
+        parent.appendChild(child1)
+        parent.appendChild(child2)
+        parent.appendChild(child3)
+    }
+
+    function appendIsReadButton(parent){
+        const isReadForm = document.createElement('form')
+        isReadForm.classList.add('isRead')
+        const isReadButton = document.createElement('input')
+        isReadButton.setAttribute("type", "checkbox")
+        isReadButton.setAttribute("id", "isRead")
+        
+        const buttonLabel = document.createElement('label')
+        buttonLabel.setAttribute("for", "isRead")
+        buttonLabel.textContent = "Read: "
+
+        isReadForm.appendChild(buttonLabel)
+        isReadForm.appendChild(isReadButton)
+        
+        parent.appendChild(isReadForm)
 }
 
-function appendIsReadButton(parent){
-    const isReadForm = document.createElement('form')
-    isReadForm.classList.add('isRead')
-    const isReadButton = document.createElement('input')
-    isReadButton.setAttribute("type", "checkbox")
-    isReadButton.setAttribute("id", "isRead")
-    
-    const buttonLabel = document.createElement('label')
-    buttonLabel.setAttribute("for", "isRead")
-    buttonLabel.textContent = "Read: "
-
-    isReadForm.appendChild(buttonLabel)
-    isReadForm.appendChild(isReadButton)
-    
-    parent.appendChild(isReadForm)
-}
-
-function removeBook(index){
-    myLibrary = myLibrary.filter((n) => n != index)
-    console.log(myLibrary)
-}
-
-//Prototype example
-Book.prototype.sayName = function(){
-    console.log(this.name)
-}
 Book.prototype.isRead = function(){
     this.read = true
+}
+Book.prototype.notRead = function(){
+    this.read = false
 }
 
 
