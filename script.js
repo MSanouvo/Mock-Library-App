@@ -13,12 +13,6 @@ function addBookToLibrary(book){
     myLibrary.push(book)
 }
 
-// //example objects
-// const harryP = new Book('Harry Potter', "J.k Rowling", 600)
-// const dune = new Book('Dune', 'Dune Author')
-
-// addBookToLibrary(harryP)
-// addBookToLibrary(dune)
 function displayLibrary(){
     const libSize = myLibrary.length
     console.log('Here is your current library:')
@@ -50,9 +44,7 @@ function displayLibrary(){
 
         remove.addEventListener('click', () =>{
             currentIndex = book.dataset.indexNumber
-            //alert(currentBook)
-            delete(myLibrary[currentIndex])
-            console.log(myLibrary)
+            myLibrary.splice(currentIndex, 1)
             displayLibrary()
         })
     }
@@ -80,8 +72,8 @@ function appendIsReadButton(parent){
     parent.appendChild(isReadForm)
 }
 
-function removeBook(book){
-    myLibrary = myLibrary.filter((n) => n.name != book.name)
+function removeBook(index){
+    myLibrary = myLibrary.filter((n) => n != index)
     console.log(myLibrary)
 }
 
