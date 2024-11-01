@@ -49,6 +49,24 @@ body{
     width: 250px;
 }
 
+.remove{
+    width: 150px;
+    height: 30px;
+    justify-self: center;
+    align-self: end;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 1px 1px 1px grey;
+}
+
+.isRead{
+    align-self: end;
+}
+
 dialog{
     border: none;
     background: none;
@@ -66,7 +84,7 @@ dialog{
     border-radius: 20px;
 }
 
-.book-form{
+#book-form{
     width: 200px;
     display: grid;
     padding: 0px 20px 20px;

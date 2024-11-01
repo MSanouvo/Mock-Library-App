@@ -38,6 +38,7 @@ function displayLibrary(){
         
         appendChildern(book, bookName, bookAuthor, bookPageCount)
         appendIsReadButton(book)
+        appendRemoveButton(book)
         book.setAttribute("class", "book")
         bookShelf.appendChild(book)
     }
@@ -50,7 +51,7 @@ function appendChildern(parent, child1, child2, child3){
 
 function appendIsReadButton(parent){
     const isReadForm = document.createElement('form')
-    
+    isReadForm.classList.add('isRead')
     const isReadButton = document.createElement('input')
     isReadButton.setAttribute("type", "checkbox")
     isReadButton.setAttribute("id", "isRead")
@@ -63,6 +64,15 @@ function appendIsReadButton(parent){
     isReadForm.appendChild(isReadButton)
     
     parent.appendChild(isReadForm)
+}
+
+function appendRemoveButton(parent){
+    const remove = document.createElement('button')
+    remove.classList.add('remove')
+    remove.textContent = 'Remove Book'
+    remove.setAttribute("type", "button")
+
+    parent.appendChild(remove)
 }
 
 
