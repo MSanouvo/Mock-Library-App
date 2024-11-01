@@ -10,7 +10,6 @@ function Book(name, author, page_count) {
 }
 
 function addBookToLibrary(book){
-    //book = new Book(getName.value, getAuthor.value, getPageCount.value)
     myLibrary.push(book)
 }
 
@@ -24,10 +23,13 @@ function displayLibrary(){
     const libSize = myLibrary.length
     console.log('Here is your current library:')
     bookShelf.innerHTML ="" //Replace this with preloading backend if implemented
+    
     for(let i=0; i<libSize; i++){
         currentBook = myLibrary[i]
         //parent-book
         const book = document.createElement('div')
+        book.setAttribute("class", "book")
+        book.setAttribute("data-index-number", i)
         //child-book details
         const bookName = document.createElement('span')
         bookName.textContent = currentBook.name
@@ -35,12 +37,24 @@ function displayLibrary(){
         bookAuthor.textContent = currentBook.author
         const bookPageCount = document.createElement('span')
         bookPageCount.textContent = currentBook.page_count
-        
+        //create and append book
         appendChildern(book, bookName, bookAuthor, bookPageCount)
         appendIsReadButton(book)
-        appendRemoveButton(book)
-        book.setAttribute("class", "book")
         bookShelf.appendChild(book)
+        //remove button
+        const remove = document.createElement('button')
+        remove.textContent = 'Remove Book'
+        remove.setAttribute("type", "button")
+        remove.setAttribute("id", "remove")
+        book.appendChild(remove)
+
+        remove.addEventListener('click', () =>{
+            currentIndex = book.dataset.indexNumber
+            //alert(currentBook)
+            delete(myLibrary[currentIndex])
+            console.log(myLibrary)
+            displayLibrary()
+        })
     }
 }
 function appendChildern(parent, child1, child2, child3){
@@ -66,16 +80,6 @@ function appendIsReadButton(parent){
     parent.appendChild(isReadForm)
 }
 
-function appendRemoveButton(parent){
-    const remove = document.createElement('button')
-    remove.classList.add('remove')
-    remove.textContent = 'Remove Book'
-    remove.setAttribute("type", "button")
-
-    parent.appendChild(remove)
-}
-
-
 function removeBook(book){
     myLibrary = myLibrary.filter((n) => n.name != book.name)
     console.log(myLibrary)
@@ -92,11 +96,14 @@ Book.prototype.isRead = function(){
 
 
 displayLibrary()
-//removeBook(dune)
 //Event Listeners
 const dialog = document.querySelector('dialog')
 const showDialog = document.querySelector('#open')
 const closeDialog = document.querySelector('#close')
+const getName = document.querySelector('#name')
+const getAuthor = document.querySelector('#author')
+const getPageCount = document.querySelector('#page_count')
+const submitForm = document.querySelector('#submit')
 
 
 showDialog.addEventListener("click", () => {
@@ -107,17 +114,11 @@ closeDialog.addEventListener("click", () =>{
     dialog.close();
 })
 
-// submitForm.addEventListener("click", (e) =>{
-//     addBookToLibrary(e);
-// })
-
-const getName = document.querySelector('#name')
-const getAuthor = document.querySelector('#author')
-const getPageCount = document.querySelector('#page_count')
-const submitForm = document.querySelector('#submit')
 submitForm.addEventListener('click', () =>{
     let newBook = new Book(getName.value, getAuthor.value, getPageCount.value)
     addBookToLibrary(newBook)
-    //alert(myLibrary.length)
     displayLibrary()
 })
+    
+
+
