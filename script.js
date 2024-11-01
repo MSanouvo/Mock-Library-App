@@ -1,3 +1,4 @@
+
 const bookShelf = document.querySelector('.shelfspace')
 let myLibrary = [];
 
@@ -9,21 +10,20 @@ function Book(name, author, page_count) {
 }
 
 function addBookToLibrary(book){
+    //book = new Book(getName.value, getAuthor.value, getPageCount.value)
     myLibrary.push(book)
 }
 
-//example objects
-const harryP = new Book('Harry Potter', "J.k Rowling", 600)
-const dune = new Book('Dune', 'Dune Author')
+// //example objects
+// const harryP = new Book('Harry Potter', "J.k Rowling", 600)
+// const dune = new Book('Dune', 'Dune Author')
 
-addBookToLibrary(harryP)
-addBookToLibrary(dune)
-
-
-
+// addBookToLibrary(harryP)
+// addBookToLibrary(dune)
 function displayLibrary(){
     const libSize = myLibrary.length
     console.log('Here is your current library:')
+    bookShelf.innerHTML ="" //Replace this with preloading backend if implemented
     for(let i=0; i<libSize; i++){
         currentBook = myLibrary[i]
         //parent-book
@@ -40,12 +40,6 @@ function displayLibrary(){
         appendIsReadButton(book)
         book.setAttribute("class", "book")
         bookShelf.appendChild(book)
-        //Works but vulnerable to HTML injection
-        // book.innerHTML = ('<span>'+currentBook.name+'</span>'
-        //     +'<span>'+currentBook.author+'</span>'
-        //     +'<span>'+currentBook.page_count+'</span>'
-        //)
-        
     }
 }
 function appendChildern(parent, child1, child2, child3){
@@ -94,6 +88,7 @@ const dialog = document.querySelector('dialog')
 const showDialog = document.querySelector('#open')
 const closeDialog = document.querySelector('#close')
 
+
 showDialog.addEventListener("click", () => {
     dialog.showModal();
 })
@@ -102,4 +97,17 @@ closeDialog.addEventListener("click", () =>{
     dialog.close();
 })
 
+// submitForm.addEventListener("click", (e) =>{
+//     addBookToLibrary(e);
+// })
 
+const getName = document.querySelector('#name')
+const getAuthor = document.querySelector('#author')
+const getPageCount = document.querySelector('#page_count')
+const submitForm = document.querySelector('#submit')
+submitForm.addEventListener('click', () =>{
+    let newBook = new Book(getName.value, getAuthor.value, getPageCount.value)
+    addBookToLibrary(newBook)
+    //alert(myLibrary.length)
+    displayLibrary()
+})

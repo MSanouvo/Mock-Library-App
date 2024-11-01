@@ -84,8 +84,22 @@ dialog{
     justify-content: center;
     align-items: center;
 }
-
+#open{
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    align-self: center;
+    justify-self: center;
+    font-size: 1rem;
+    background-color: rgb(102, 67, 15);
+    color: white;
+    font-weight: bold;
+}
 .input{
     align-self: center;
     justify-self: start;
+}
+
+input:invalid{
+    border: 1px solid rgb(197, 0, 0);
 }

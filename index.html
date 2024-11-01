@@ -18,8 +18,9 @@
                     <span>Page Count</span>
                 </div>
             </div>
+            <button id="open">New Book</button>
         </div>
-        <button id="open">New Book</button>
+        
         <dialog>
             <div class="modal">
                 <button id="close" autofocus>cancel</button>
@@ -27,7 +28,7 @@
                     <span><h2>Enter Book</h2></span>
                     <div class="input name">
                         <label for="name">Input Name: </label>
-                        <input type="text" name="Book Name" id="name">
+                        <input type="text" name="Book Name" id="name" required>
                     </div>
                     <div class="input author">
                         <label for="author">Input Author:</label>
@@ -38,7 +39,7 @@
                         <input type="number" name="Page Count" id="page_count">
                     </div>
                     <div class="input submit">
-                        <button type="submit">Submit</button>
+                        <button id="submit" type="submit" value="submit">Submit</button>
                     </div>
                 </form>
             </div>
