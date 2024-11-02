@@ -76,30 +76,38 @@ function displayLibrary(){
         book.appendChild(remove)
 
         remove.addEventListener('click', () =>{  
-            currentIndex = book.dataset.indexNumber  
-            console.log(currentIndex)
-            removeBookName = myLibrary[currentIndex].name
-            console.log(removeBookName)
-            confirmationMessage.classList.add('message')
-            confirmationMessage.textContent = 'Are you sure you want to remove '+removeBookName+' ?'
-            confirmation.insertBefore(confirmationMessage, confirmationButtons)    
+            currentIndex = book.dataset.indexNumber
+            displayBookName()  
             removeConfirmation.showModal()
         })
         
         isReadForm.addEventListener('click', () => {
             currentIndex = book.dataset.indexNumber
             let checkbox = isReadButton.checked
-            //logic looks backwards cause default state is unchecked
-            if(checkbox === true){
-                checkbox = false
-                myLibrary[currentIndex].isRead()
-            } else{
-                checkbox = true
-                myLibrary[currentIndex].notRead()
-            } 
+            checkRead(checkbox)
         })
 
         }
+    }
+
+    function checkRead(status){
+        //logic looks backwards cause default state is unchecked
+        if(status === true){
+            console.log(myLibrary)
+            checkbox = false
+            myLibrary[currentIndex].isRead()
+        } else{
+            console.log(myLibrary)
+            checkbox = true
+            myLibrary[currentIndex].notRead()
+        } 
+    }
+
+    function displayBookName(){
+        removeBookName = myLibrary[currentIndex].name
+        confirmationMessage.classList.add('message')
+        confirmationMessage.textContent = 'Are you sure you want to remove '+removeBookName+' ?'
+        confirmation.insertBefore(confirmationMessage, confirmationButtons)    
     }
 
 
@@ -134,8 +142,6 @@ Book.prototype.notRead = function(){
 }
 
 
-
-displayLibrary()
 //Event Listeners
 showDialog.addEventListener("click", () => {
     dialog.showModal();
@@ -167,3 +173,4 @@ confirmation.addEventListener('click', (event) => {
         }
 })
 
+displayLibrary()
