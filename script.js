@@ -1,6 +1,13 @@
+const removeConfirmation = document.querySelector('dialog#confirmation')
+const yesButton = document.querySelector('#yes')
+const noButton = document.querySelector('#no')
+const confirmation = document.querySelector('.confirm-modal')
+const confirmationMessage = document.createElement('span')
+const confirmationButtons = document.querySelector('.confirmation-buttons')
 
 const bookShelf = document.querySelector('.shelfspace')
 let myLibrary = [];
+let currentIndex = null 
 
 function Book(name, author, page_count) {
     this.name = name;
@@ -49,13 +56,11 @@ function displayLibrary(){
         }else{
             isReadButton.checked = false
         }
-
         const buttonLabel = document.createElement('label')
         buttonLabel.setAttribute("for", "isRead")
         buttonLabel.textContent = "Read: "
         isReadForm.appendChild(buttonLabel)
         isReadForm.appendChild(isReadButton)
-        
         
         //create and append book
         appendChildern(book, bookName, bookAuthor, bookPageCount)
@@ -63,13 +68,16 @@ function displayLibrary(){
         bookShelf.appendChild(book)
         book.appendChild(remove)
 
-        
-        remove.addEventListener('click', () =>{
-            currentIndex = book.dataset.indexNumber
-            myLibrary.splice(currentIndex, 1)
-            displayLibrary()
+        remove.addEventListener('click', () =>{  
+            currentIndex = book.dataset.indexNumber  
+            console.log(currentIndex)
+            removeBookName = myLibrary[currentIndex].name
+            console.log(removeBookName)
+            confirmationMessage.textContent = 'Are you sure you want to remove '+removeBookName+' ?'
+            confirmation.insertBefore(confirmationMessage, confirmationButtons)    
+            removeConfirmation.showModal()
         })
-
+        
         isReadForm.addEventListener('click', () => {
             currentIndex = book.dataset.indexNumber
             let checkbox = isReadButton.checked
@@ -85,6 +93,8 @@ function displayLibrary(){
 
         }
     }
+
+
     function appendChildern(parent, child1, child2, child3){
         parent.appendChild(child1)
         parent.appendChild(child2)
@@ -119,13 +129,14 @@ Book.prototype.notRead = function(){
 
 displayLibrary()
 //Event Listeners
-const dialog = document.querySelector('dialog')
+const dialog = document.querySelector('#form-dialog')
 const showDialog = document.querySelector('#open')
 const closeDialog = document.querySelector('#close')
 const getName = document.querySelector('#name')
 const getAuthor = document.querySelector('#author')
 const getPageCount = document.querySelector('#page_count')
-const submitForm = document.querySelector('#submit')
+const form = document.querySelector('#book-form')
+
 
 
 showDialog.addEventListener("click", () => {
@@ -136,11 +147,28 @@ closeDialog.addEventListener("click", () =>{
     dialog.close();
 })
 
-submitForm.addEventListener('click', () =>{
+form.addEventListener('submit', () =>{
     let newBook = new Book(getName.value, getAuthor.value, getPageCount.value)
     addBookToLibrary(newBook)
     displayLibrary()
+    form.reset()
+    dialog.close()
 })
-    
 
+
+
+
+confirmation.addEventListener('click', (event) => {
+    let target = event.target
+    switch(target.id){
+        case 'yes':
+            myLibrary.splice(currentIndex, 1)
+            removeConfirmation.close()
+            displayLibrary()
+            break
+        case 'no':
+            removeConfirmation.close()
+            break
+        }
+})
 

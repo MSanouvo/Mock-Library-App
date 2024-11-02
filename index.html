@@ -21,7 +21,7 @@
             <button id="open">New Book</button>
         </div>
         
-        <dialog>
+        <dialog id="form-dialog">
             <div class="modal">
                 <button id="close" autofocus>cancel</button>
                 <form id="book-form" action="script.js" method="dialog">
@@ -43,6 +43,15 @@
                     </div>
                 </form>
             </div>
+        </dialog>
+        <dialog id="confirmation">
+            <form class="confirm-modal">
+                <!-- <span class="removal-confirmation">Are you sure you want to remove this book?</span> -->
+                <div class="confirmation-buttons">
+                    <button type="button" id="yes">Yes</button>
+                    <button type="button" id="no">No</button>
+                </div>
+            </form>
         </dialog>
     </div>
     <script src="script.js"></script>
