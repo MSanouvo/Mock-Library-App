@@ -1,11 +1,18 @@
+const dialog = document.querySelector('#form-dialog')
+const showDialog = document.querySelector('#open')
+const closeDialog = document.querySelector('#close')
+const getName = document.querySelector('#name')
+const getAuthor = document.querySelector('#author')
+const getPageCount = document.querySelector('#page_count')
+const form = document.querySelector('#book-form')
 const removeConfirmation = document.querySelector('dialog#confirmation')
 const yesButton = document.querySelector('#yes')
 const noButton = document.querySelector('#no')
 const confirmation = document.querySelector('.confirm-modal')
 const confirmationMessage = document.createElement('span')
 const confirmationButtons = document.querySelector('.confirmation-buttons')
-
 const bookShelf = document.querySelector('.shelfspace')
+
 let myLibrary = [];
 let currentIndex = null 
 
@@ -73,6 +80,7 @@ function displayLibrary(){
             console.log(currentIndex)
             removeBookName = myLibrary[currentIndex].name
             console.log(removeBookName)
+            confirmationMessage.classList.add('message')
             confirmationMessage.textContent = 'Are you sure you want to remove '+removeBookName+' ?'
             confirmation.insertBefore(confirmationMessage, confirmationButtons)    
             removeConfirmation.showModal()
@@ -129,16 +137,6 @@ Book.prototype.notRead = function(){
 
 displayLibrary()
 //Event Listeners
-const dialog = document.querySelector('#form-dialog')
-const showDialog = document.querySelector('#open')
-const closeDialog = document.querySelector('#close')
-const getName = document.querySelector('#name')
-const getAuthor = document.querySelector('#author')
-const getPageCount = document.querySelector('#page_count')
-const form = document.querySelector('#book-form')
-
-
-
 showDialog.addEventListener("click", () => {
     dialog.showModal();
 })
@@ -154,9 +152,6 @@ form.addEventListener('submit', () =>{
     form.reset()
     dialog.close()
 })
-
-
-
 
 confirmation.addEventListener('click', (event) => {
     let target = event.target
